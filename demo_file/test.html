@@ -10,40 +10,26 @@
 
     <body>
         <!-- BEGIN TRACE -->
-  <script class="trace-data" type="application/text">
+        <script class="trace-data" type="application/text">
 # tracer: nop
-# 
-# entries-in-buffer/entries-written: 906634/906634   #P:4
-#
-#                                      _-----=> irqs-off
-#                                     / _----=> need-resched
-#                                    | / _---=> hardirq/softirq
-#                                    || / _--=> preempt-depth
-#                                    ||| /     delay
-#           TASK-PID    TGID   CPU#  ||||    TIMESTAMP  FUNCTION
-#              | |        |      |   ||||       |         |
-atrace-9681  ( 9681) [001] ...1  2318.330755: tracing_mark_write: trace_event_clock_sync: parent_ts=2318.330811
-atrace-9681  ( 9681) [001] ...1  2318.330790: tracing_mark_write: trace_event_clock_sync: realtime_ts=1254572507
-atrace-9681  ( 9681) [001] d..3  2318.330868: sched_switch: prev_comm=atrace prev_pid=9681 prev_prio=120 prev_state=S ==> next_comm=swapper/1 next_pid=0 next_prio=120
-rcu_preempt-7     (    7) [002] d..3  2335.848911: sched_switch: prev_comm=rcu_preempt prev_pid=7 prev_prio=120 prev_state=S ==> next_comm=ksoftirqd/2 next_pid=16 next_prio=120
-ksoftirqd/2-16    (   16) [002] ..s1  2335.848921: softirq_entry: vec=9 [action=RCU]
-ksoftirqd/2-16    (   16) [002] ..s1  2335.848957: softirq_exit: vec=9 [action=RCU]
-ksoftirqd/2-16    (   16) [002] d..3  2335.848982: sched_switch: prev_comm=ksoftirqd/2 prev_pid=16 prev_prio=120 prev_state=S ==> next_comm=swapper/2 next_pid=0 next_prio=120
-com.prefabulated.touchlatency-9564  ( 9564) [000] ...1  2335.849491: tracing_mark_write: B|9564|Choreographer#doFrame
-com.prefabulated.touchlatency-9564  ( 9564) [000] d.h1  2335.849585: irq_handler_entry: irq=3 name=arch_timer
-com.prefabulated.touchlatency-9564  ( 9564) [000] d.h1  2335.849637: softirq_raise: vec=1 [action=TIMER]
-com.prefabulated.touchlatency-9564  ( 9564) [000] d.h1  2335.849649: softirq_raise: vec=9 [action=RCU]
-com.prefabulated.touchlatency-9564  ( 9564) [000] d.h1  2335.849678: softirq_raise: vec=7 [action=SCHED]
-com.prefabulated.touchlatency-9564  ( 9564) [000] d.h2  2335.849704: workqueue_queue_work: work struct=ffffffc0017bbfc0 function=def_work_fn workqueue=ffffffc031f7b000 req_cpu=4 cpu=4294967295
-com.prefabulated.touchlatency-9564  ( 9564) [000] d.h2  2335.849710: workqueue_activate_work: work struct ffffffc0017bbfc0
-com.prefabulated.touchlatency-9564  ( 9564) [000] d.h1  2335.849808: irq_handler_exit: irq=3 ret=handled
-          <idle>-0     (-----) [002] d..2  2335.849815: ipi_entry: (Rescheduling interrupts)
-com.prefabulated.touchlatency-9564  ( 9564) [000] ..s1  2335.849824: softirq_entry: vec=1 [action=TIMER]
-com.prefabulated.touchlatency-9564  ( 9564) [000] d.s2  2335.849842: workqueue_queue_work: work struct=ffffffc0f90b6e18 function=tsens_poll workqueue=ffffffc0f98b4000 req_cpu=4 cpu=0
-com.prefabulated.touchlatency-9564  ( 9564) [000] d.s2  2335.849846: workqueue_activate_work: work struct ffffffc0f90b6e18
+# trimmed
+atrace-16351 [003] d..4 15309.319299: sched_wakeup: comm=rcuop/2 pid=29 prio=120 success=1 target_cpu=003
+atrace-16351 (16351) [003] ...1 15309.319460: tracing_mark_write: trace_event_clock_sync: parent_ts=15309.322266
+atrace-16351 (16351) [003] ...1 15309.319476: tracing_mark_write: trace_event_clock_sync: realtime_ts=1520837863649
+atrace-16351 (16351) [003] d..3 15309.319497: sched_switch: prev_comm=atrace prev_pid=16351 prev_prio=120 prev_state=S ==> next_comm=rcuop/2 next_pid=29 next_prio=120
+rcuop/2-29    (   29) [003] d..4 15309.319514: sched_wakeup: comm=rcu_preempt pid=7 prio=120 success=1 target_cpu=003
+rcuop/2-29  [003] d..3 15309.319523: sched_switch: prev_comm=rcuop/2 prev_pid=29 prev_prio=120 prev_state=S ==> next_comm=rcu_preempt next_pid=7 next_prio=120
+rcu_preempt-7     (    7) [003] d..3 15309.319544: sched_switch: prev_comm=rcu_preempt prev_pid=7 prev_prio=120 prev_state=S ==> next_comm=swapper/3 next_pid=0 next_prio=120
+          <idle>-0     (-----) [003] dns5 15309.328630: sched_wakeup: comm=kworker/u8:0 pid=13204 prio=120 success=1 target_cpu=003
+          <idle>-0     (-----) [003] dns4 15309.328644: sched_wakeup: comm=rcu_preempt pid=7 prio=120 success=1 target_cpu=003
+          <idle>-0     (-----) [003] d..3 15309.328687: sched_switch: prev_comm=swapper/3 prev_pid=0 prev_prio=120 prev_state=R ==> next_comm=rcu_preempt next_pid=7 next_prio=120
+rcu_preempt-7     (    7) [003] d..5 15309.328710: sched_wakeup: comm=rcuop/2 pid=29 prio=120 success=1 target_cpu=003
+rcu_preempt-7     (    7) [003] d..3 15309.328721: sched_switch: prev_comm=rcu_preempt prev_pid=7 prev_prio=120 prev_state=S ==> next_comm=rcuop/2 next_pid=29 next_prio=120
+rcuop/2-29    (   29) [003] d..4 15309.328739: sched_wakeup: comm=rcuop/3 pid=37 prio=120 success=1 target_cpu=003
+rcuop/2-29    (   29) [003] d..3 15309.328747: sched_switch: prev_comm=rcuop/2 prev_pid=29 prev_prio=120 prev_state=S ==> next_comm=rcuop/3 next_pid=37 next_prio=120
+rcuop/3-37    (   37) [003] d..3 15309.328760: sched_switch: prev_comm=rcuop/3 prev_pid=37 prev_prio=120 prev_state=S ==> next_comm=kworker/u8:0 next_pid=13204 next_prio=120
 
-
-        </script>
+</script>
     </body>
 
     </html>
