@@ -1,13 +1,17 @@
 import os
 import trace
+from rule.verifyclass import VerifyClasChecker
 
 log_file = os.getcwd() + '\\demo_file\\test.html'
+log_file = "D:\\Downloads\\perf_traces\\systrace_tutorial.html"
 trace_data=[]
 
 def main():
     trace_data = gettracedata(log_file)
-    for value in trace_data:
-        value.print_data()
+    # for value in trace_data:
+    #     value.print_data()
+    verifyCheck = VerifyClasChecker(trace_data,"com.prefabulated.touchlatency")
+    
 
 def gettracedata(file_path):
     temp_data=[]

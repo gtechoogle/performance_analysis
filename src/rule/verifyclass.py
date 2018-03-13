@@ -1,12 +1,19 @@
-class VerifyClass(object):
+class VerifyClasChecker(object):
     source_data = []
     target_data = []
-    pkgname=''
-    def __init__(self, source, target):
-        self.source_data = source;
-        self.target_data = target;
+    def __init__(self, source, sourcepkgname):
+        print("VerifyClasChecker")
+        self.source_data = self.getsourcedata(source, sourcepkgname);
+        print (self.source_data)
+        # self.target_data = target;
 
-    def checkverifyclass(self, pkg):
-        self.pkgname = pkg
+    def getsourcedata(self, data, pkgname):
+        valuelist = []
+        for value in data:
+            if value.task == pkgname:
+                valuelist.append(value)
+        return valuelist
+            
+
         
         
