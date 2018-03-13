@@ -1,7 +1,7 @@
 import os
 import trace
 
-log_file = 'E:\\workspace\\Github_workspaces\\performance_analysis\\demo_file\\test.html'
+log_file = os.getcwd() + '\\demo_file\\test.html'
 trace_data=[]
 
 def main():

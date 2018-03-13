@@ -9,12 +9,12 @@ class Trace(object):
     def __init__(self, rowdata):
         rawdata = self.parserowdata(rowdata)
         # print rawdata
-        self.task = self.gettask(rawdata)
-        self.pid = self.getpid(rawdata)
-        self.tgid = self.gettgid(rawdata)
-        self.cpu_num = self.getcpunum(rawdata)
-        self.time_stamp = self.gettime(rawdata)
-        self.function_name = self.getfunctionname(rawdata)
+        self.task = self.gettask(rawdata[0])
+        self.pid = self.getpid(rawdata[0])
+        self.tgid = self.gettgid(rawdata[1])
+        self.cpu_num = self.getcpunum(rawdata[2])
+        self.time_stamp = self.gettime(rawdata[4])
+        self.function_name = self.getfunctionname(rawdata[5])
         self.argument = self.getargument(rawdata)
     def parserowdata(self, data):
         temp = data.split(' ')
@@ -24,33 +24,37 @@ class Trace(object):
                 value.append(x)
         if value[1] == '(':
             value.pop(1);
+        includeTgid = False
+        for tempvalue in value:
+            if (tempvalue.find(')') != -1):
+                includeTgid = True
+                break
+        if (includeTgid == False):
+            value.insert(1,"()");
         return value
         
     def print_data(self):
         print ("task = " + self.task + " pid = " + self.pid +
         " tgid = " + self.tgid + " cpunum = %d"%self.cpu_num + " time = %f"%self.time_stamp + " function_name = " + self.function_name + " argument = " + self.argument)
     
-    def gettask(self,data):
-        str = date[0]
+    def gettask(self,str):
         task = str[0:str.find('-')]
         return task.strip(' ')
-    def getpid(self,data):
-        str = data[0]
+    def getpid(self,str):
         pid = str[str.find('-') + 1 :]
         return pid.strip(' ')
-    def gettgid(self,data):
+    def gettgid(self,str):
         tgid = ''
-        if data[1].find('(')!= -1 or data[1].find(')')!= -1:
-            tgid = data[1].strip('(').strip(')').strip(' ')
+        if str.find('(')!= -1 or str.find(')')!= -1:
+            tgid = str.strip('(').strip(')').strip(' ')
         return tgid
     def getcpunum(self,str):
         # print str
-        cpunum = str[str.find('[') + 1:str.find(']')]
+        cpunum = str[str.find('[') + 1 : str.find(']')]
         # print str
         # print cpunum
         return int(cpunum.strip(' '))
     def gettime(self,str):
-        print str
         return float(str.strip(':'))
     def getfunctionname(self,str):
         return str.strip(':')
