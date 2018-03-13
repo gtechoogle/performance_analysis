@@ -18,6 +18,19 @@ class Trace(object):
         self.argument = self.getargument(rawdata)
     def parserowdata(self, data):
         temp = data.split(' ')
+        if (temp[0].find('-') == -1):
+            index = -1;
+            str1 = ''
+            for value in temp:
+                index = index + 1
+                if value.find('-') !=-1:
+                    str1 = str1 + value
+                    break
+                else:
+                    str1 = str1 + value +'_'
+            for x in range(0,index+1):
+                temp.pop(0)
+            temp.insert(0,str1)
         value = []
         for x in temp:
             if(x != ''):

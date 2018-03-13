@@ -4,8 +4,8 @@ class VerifyClasChecker(object):
     def __init__(self, source, sourcepkgname):
         print("VerifyClasChecker")
         self.source_data = self.getsourcedata(source, sourcepkgname);
-        print (self.source_data)
-        # self.target_data = target;
+        for data in self.source_data:
+            data.print_data()
 
     def getsourcedata(self, data, pkgname):
         valuelist = []
